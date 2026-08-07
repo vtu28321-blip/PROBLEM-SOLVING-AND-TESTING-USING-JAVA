@@ -24,3 +24,18 @@ public class Solution {
         s.close();
     }
 }
+
+Input:
+5
+john tom
+john mary
+john tom
+mary anna
+john mary
+
+Output:
+1
+2
+2
+3
+3
