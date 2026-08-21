@@ -1,0 +1,80 @@
+import java.io.*;
+import java.util.*;
+
+interface PerformOperation {
+    boolean check(int a);
+}
+
+public class Solution {
+
+    public static PerformOperation isOdd() {
+        return new PerformOperation() {
+            public boolean check(int a) {
+                return a % 2 != 0;
+            }
+        };
+    }
+
+    public static PerformOperation isPrime() {
+        return new PerformOperation() {
+            public boolean check(int a) {
+                if (a < 2)
+                    return false;
+
+                for (int i = 2; i * i <= a; i++) {
+                    if (a % i == 0)
+                        return false;
+                }
+                return true;
+            }
+        };
+    }
+
+    public static PerformOperation isPalindrome() {
+        return new PerformOperation() {
+            public boolean check(int a) {
+                int original = a;
+                int reverse = 0;
+
+                while (a > 0) {
+                    reverse = reverse * 10 + a % 10;
+                    a /= 10;
+                }
+
+                return original == reverse;
+            }
+        };
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int t = sc.nextInt();
+
+        while (t-- > 0) {
+            int condition = sc.nextInt();
+            int number = sc.nextInt();
+
+            PerformOperation operation;
+
+            if (condition == 1)
+                operation = isOdd();
+            else if (condition == 2)
+                operation = isPrime();
+            else
+                operation = isPalindrome();
+
+            boolean result = operation.check(number);
+
+            if (condition == 1)
+                System.out.println(result ? "ODD" : "EVEN");
+            else if (condition == 2)
+                System.out.println(result ? "PRIME" : "COMPOSITE");
+            else
+                System.out.println(result ? "PALINDROME" : "NOT PALINDROME");
+        }
+
+        sc.close();
+    }
+
+}
