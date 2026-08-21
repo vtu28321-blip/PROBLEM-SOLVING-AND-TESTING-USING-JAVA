@@ -1,0 +1,30 @@
+class Solution {
+public:
+    string dayOfTheWeek(int day, int month, int year) {
+        tm date = {};
+        date.tm_year = year - 1900;
+        date.tm_mon = month - 1;
+        date.tm_mday = day;
+
+        mktime(&date);
+
+        string days[] = {
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+        };
+
+        return days[date.tm_wday];
+    }
+};
+
+day =
+31
+month =
+8
+year =
+2019
